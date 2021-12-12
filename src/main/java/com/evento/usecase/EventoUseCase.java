@@ -6,6 +6,7 @@ import com.evento.domain.model.Account;
 import com.evento.helper.CommonHelper;
 import com.evento.helper.ModelHelper;
 import com.evento.helper.RestHelper;
+import com.evento.infrastructure.contract.InstanceContract;
 import com.evento.repository.jpa.AccountJpa;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -66,6 +67,7 @@ public class EventoUseCase implements EventoContract.IEventoUseCase {
 
         String otp = CommonHelper.generateOtp();
         String response = iWaService.sendOtp(request.getMsisdn(), "Your OTP is " + otp);
+       // iJedisInstance.jedis().set(request.getMsisdn() + "OTP", otp);
         LOGGER.info("OTP ", otp);
         LOGGER.info(response);
         return new ResponseEntity<>(RestHelper.toResponse(), HttpStatus.ACCEPTED);
@@ -74,6 +76,7 @@ public class EventoUseCase implements EventoContract.IEventoUseCase {
     @Override
     @NotNull
     public ResponseEntity<GenericResponseData> loginUseCase(HttpHeaders headers, RequestLogin request) {
+      //  iJedisInstance.jedis().set(request.getMsisdn() + "SESSION_ID", CommonHelper.generateSessionID());
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 

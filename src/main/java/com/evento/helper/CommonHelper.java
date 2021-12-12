@@ -4,6 +4,7 @@ import com.evento.domain.dto.GenericResponse;
 
 import java.sql.Timestamp;
 import java.util.Random;
+import java.util.UUID;
 
 public class CommonHelper {
 
@@ -20,5 +21,9 @@ public class CommonHelper {
         Random rnd = new Random();
         int number = rnd.nextInt(999999);
         return String.format("%06d", number);
+    }
+
+    public static String generateSessionID() {
+        return UUID.randomUUID().toString();
     }
 }

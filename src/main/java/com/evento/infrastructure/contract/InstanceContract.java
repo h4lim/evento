@@ -14,6 +14,7 @@ import org.springframework.retry.RetryPolicy;
 import org.springframework.retry.backoff.FixedBackOffPolicy;
 import org.springframework.retry.support.RetryTemplate;
 import org.springframework.web.client.RestTemplate;
+import redis.clients.jedis.Jedis;
 import springfox.documentation.spring.web.plugins.Docket;
 
 public class InstanceContract {
@@ -30,6 +31,10 @@ public class InstanceContract {
         JedisConnectionFactory jedisConnectionFactory();
 
         RedisTemplate<String, Object> redisTemplate();
+    }
+
+    public interface IJedisInstance {
+        Jedis jedis();
     }
 
     public interface IElasticSearchInstance {
